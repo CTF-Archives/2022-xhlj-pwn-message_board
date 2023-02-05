@@ -2,7 +2,7 @@
 # Add your startup script
 
 # DO NOT DELETE
-echo $FLAG > /flag
+echo $FLAG > /home/ctf/flag
 chmod 777 /flag
 
 export FLAG=not_flag
