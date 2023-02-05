@@ -2,8 +2,8 @@
 # Add your startup script
 
 # DO NOT DELETE
-echo $FLAG > /flag.txt
-chmod 777 /flag.txt
+echo $FLAG > /flag
+chmod 777 /flag
 
 export FLAG=not_flag
 FLAG=not_flag

@@ -1,8 +1,7 @@
 FROM ubuntu:16.04
 
-# 如在大陆内的网络环境进行编译，请取消下行的注释
-# RUN sed -i "s/http:\/\/archive.ubuntu.com/http:\/\/mirrors.tuna.tsinghua.edu.cn/g" /etc/apt/sources.list
-RUN apt-get update && apt-get -y dist-upgrade && \
+RUN sed -i "s/http:\/\/archive.ubuntu.com/http:\/\/mirrors.tuna.tsinghua.edu.cn/g" /etc/apt/sources.list && \
+    apt-get update && apt-get -y dist-upgrade && \
     apt-get install -y lib32z1 xinetd
 
 RUN useradd -m ctf
@@ -31,8 +30,10 @@ RUN echo "Blocked by ctf_xinetd" > /etc/banner_fail
 RUN chmod +x /start.sh
 
 COPY ./bin/ /home/ctf/
+RUN touch /home/ctf/flag
 RUN chown -R root:ctf /home/ctf && \
-    chmod -R 750 /home/ctf 
+    chmod -R 750 /home/ctf && \
+    chmod 740 /home/ctf/flag
 
 ENTRYPOINT [ "/bin/bash" ,"/start.sh"]
 
